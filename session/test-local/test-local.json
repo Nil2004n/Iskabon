@@ -1,0 +1,448 @@
+{
+  "session": "test-local",
+  "version": "0.1.0",
+  "created_at": "2026-05-23T06:54:15Z",
+  "target_router": "127.0.0.1",
+  "target": "127.0.0.1",
+  "continuous_discovery": false,
+  "findings": [
+    {
+      "host": "127.0.0.1",
+      "protocol": "tcp",
+      "port": 20,
+      "status": "closed",
+      "latency_ms": 0.223133
+    }
+  ,
+    {
+      "host": "127.0.0.1",
+      "protocol": "tcp",
+      "port": 53,
+      "status": "closed",
+      "latency_ms": 0.053893
+    }
+  ,
+    {
+      "host": "127.0.0.1",
+      "protocol": "tcp",
+      "port": 69,
+      "status": "closed",
+      "latency_ms": 0.205850
+    }
+  ,
+    {
+      "host": "127.0.0.1",
+      "protocol": "tcp",
+      "port": 139,
+      "status": "closed",
+      "latency_ms": 0.042320
+    }
+  ,
+    {
+      "host": "127.0.0.1",
+      "protocol": "tcp",
+      "port": 25,
+      "status": "closed",
+      "latency_ms": 0.080142
+    }
+  ,
+    {
+      "host": "127.0.0.1",
+      "protocol": "tcp",
+      "port": 445,
+      "status": "closed",
+      "latency_ms": 0.149033
+    }
+  ,
+    {
+      "host": "127.0.0.1",
+      "protocol": "tcp",
+      "port": 1080,
+      "status": "closed",
+      "latency_ms": 0.051929
+    }
+  ,
+    {
+      "host": "127.0.0.1",
+      "protocol": "tcp",
+      "port": 2049,
+      "status": "closed",
+      "latency_ms": 0.076435
+    }
+  ,
+    {
+      "host": "127.0.0.1",
+      "protocol": "tcp",
+      "port": 110,
+      "status": "closed",
+      "latency_ms": 0.103256
+    }
+  ,
+    {
+      "host": "127.0.0.1",
+      "protocol": "tcp",
+      "port": 6379,
+      "status": "closed",
+      "latency_ms": 0.209512
+    }
+  ,
+    {
+      "host": "127.0.0.1",
+      "protocol": "tcp",
+      "port": 8080,
+      "status": "closed",
+      "latency_ms": 0.033002
+    }
+  ,
+    {
+      "host": "127.0.0.1",
+      "protocol": "tcp",
+      "port": 8443,
+      "status": "closed",
+      "latency_ms": 0.030388
+    }
+  ,
+    {
+      "host": "127.0.0.1",
+      "protocol": "tcp",
+      "port": 6443,
+      "status": "closed",
+      "latency_ms": 0.566595
+    }
+  ,
+    {
+      "host": "127.0.0.1",
+      "protocol": "tcp",
+      "port": 135,
+      "status": "closed",
+      "latency_ms": 0.049705
+    }
+  ,
+    {
+      "host": "127.0.0.1",
+      "protocol": "tcp",
+      "port": 143,
+      "status": "closed",
+      "latency_ms": 0.113225
+    }
+  ,
+    {
+      "host": "127.0.0.1",
+      "protocol": "tcp",
+      "port": 138,
+      "status": "closed",
+      "latency_ms": 0.127121
+    }
+  ,
+    {
+      "host": "127.0.0.1",
+      "protocol": "tcp",
+      "port": 137,
+      "status": "closed",
+      "latency_ms": 0.164342
+    }
+  ,
+    {
+      "host": "127.0.0.1",
+      "protocol": "tcp",
+      "port": 161,
+      "status": "closed",
+      "latency_ms": 0.059473
+    }
+  ,
+    {
+      "host": "127.0.0.1",
+      "protocol": "tcp",
+      "port": 389,
+      "status": "closed",
+      "latency_ms": 0.074581
+    }
+  ,
+    {
+      "host": "127.0.0.1",
+      "protocol": "tcp",
+      "port": 23,
+      "status": "closed",
+      "latency_ms": 0.068420
+    }
+  ,
+    {
+      "host": "127.0.0.1",
+      "protocol": "tcp",
+      "port": 443,
+      "status": "closed",
+      "latency_ms": 0.108596
+    }
+  ,
+    {
+      "host": "127.0.0.1",
+      "protocol": "tcp",
+      "port": 587,
+      "status": "closed",
+      "latency_ms": 0.043783
+    }
+  ,
+    {
+      "host": "127.0.0.1",
+      "protocol": "tcp",
+      "port": 465,
+      "status": "closed",
+      "latency_ms": 0.070894
+    }
+  ,
+    {
+      "host": "127.0.0.1",
+      "protocol": "tcp",
+      "port": 22,
+      "status": "closed",
+      "latency_ms": 0.103917
+    }
+  ,
+    {
+      "host": "127.0.0.1",
+      "protocol": "tcp",
+      "port": 1433,
+      "status": "closed",
+      "latency_ms": 0.034926
+    }
+  ,
+    {
+      "host": "127.0.0.1",
+      "protocol": "tcp",
+      "port": 1194,
+      "status": "closed",
+      "latency_ms": 0.058461
+    }
+  ,
+    {
+      "host": "127.0.0.1",
+      "protocol": "tcp",
+      "port": 67,
+      "status": "closed",
+      "latency_ms": 0.041669
+    }
+  ,
+    {
+      "host": "127.0.0.1",
+      "protocol": "tcp",
+      "port": 1521,
+      "status": "closed",
+      "latency_ms": 0.052109
+    }
+  ,
+    {
+      "host": "127.0.0.1",
+      "protocol": "tcp",
+      "port": 1723,
+      "status": "closed",
+      "latency_ms": 0.131244
+    }
+  ,
+    {
+      "host": "127.0.0.1",
+      "protocol": "tcp",
+      "port": 995,
+      "status": "closed",
+      "latency_ms": 0.227596
+    }
+  ,
+    {
+      "host": "127.0.0.1",
+      "protocol": "tcp",
+      "port": 993,
+      "status": "closed",
+      "latency_ms": 0.258559
+    }
+  ,
+    {
+      "host": "127.0.0.1",
+      "protocol": "tcp",
+      "port": 631,
+      "status": "closed",
+      "latency_ms": 0.290981
+    }
+  ,
+    {
+      "host": "127.0.0.1",
+      "protocol": "tcp",
+      "port": 1883,
+      "status": "closed",
+      "latency_ms": 0.068801
+    }
+  ,
+    {
+      "host": "127.0.0.1",
+      "protocol": "tcp",
+      "port": 80,
+      "status": "closed",
+      "latency_ms": 0.115469
+    }
+  ,
+    {
+      "host": "127.0.0.1",
+      "protocol": "tcp",
+      "port": 5060,
+      "status": "closed",
+      "latency_ms": 0.033263
+    }
+  ,
+    {
+      "host": "127.0.0.1",
+      "protocol": "tcp",
+      "port": 5672,
+      "status": "closed",
+      "latency_ms": 0.047360
+    }
+  ,
+    {
+      "host": "127.0.0.1",
+      "protocol": "tcp",
+      "port": 5432,
+      "status": "open",
+      "latency_ms": 0.090802
+    }
+  ,
+    {
+      "host": "127.0.0.1",
+      "protocol": "tcp",
+      "port": 2375,
+      "status": "closed",
+      "latency_ms": 0.230527
+    }
+  ,
+    {
+      "host": "127.0.0.1",
+      "protocol": "tcp",
+      "port": 3389,
+      "status": "closed",
+      "latency_ms": 0.213716
+    }
+  ,
+    {
+      "host": "127.0.0.1",
+      "protocol": "tcp",
+      "port": 514,
+      "status": "closed",
+      "latency_ms": 0.770386
+    }
+  ,
+    {
+      "host": "127.0.0.1",
+      "protocol": "tcp",
+      "port": 3306,
+      "status": "closed",
+      "latency_ms": 0.316129
+    }
+  ,
+    {
+      "host": "127.0.0.1",
+      "protocol": "tcp",
+      "port": 5900,
+      "status": "closed",
+      "latency_ms": 0.034375
+    }
+  ,
+    {
+      "host": "127.0.0.1",
+      "protocol": "tcp",
+      "port": 68,
+      "status": "closed",
+      "latency_ms": 0.294037
+    }
+  ,
+    {
+      "host": "127.0.0.1",
+      "protocol": "tcp",
+      "port": 8000,
+      "status": "closed",
+      "latency_ms": 0.031119
+    }
+  ,
+    {
+      "host": "127.0.0.1",
+      "protocol": "tcp",
+      "port": 21,
+      "status": "closed",
+      "latency_ms": 0.276890
+    }
+  ,
+    {
+      "host": "127.0.0.1",
+      "protocol": "tcp",
+      "port": 2376,
+      "status": "closed",
+      "latency_ms": 1.045167
+    }
+  ,
+    {
+      "host": "127.0.0.1",
+      "protocol": "tcp",
+      "port": 111,
+      "status": "closed",
+      "latency_ms": 0.094559
+    }
+  ,
+    {
+      "host": "127.0.0.1",
+      "protocol": "tcp",
+      "port": 9042,
+      "status": "closed",
+      "latency_ms": 0.028525
+    }
+  ,
+    {
+      "host": "127.0.0.1",
+      "protocol": "tcp",
+      "port": 9418,
+      "status": "closed",
+      "latency_ms": 0.025038
+    }
+  ,
+    {
+      "host": "127.0.0.1",
+      "protocol": "tcp",
+      "port": 123,
+      "status": "closed",
+      "latency_ms": 0.103366
+    }
+  ,
+    {
+      "host": "127.0.0.1",
+      "protocol": "tcp",
+      "port": 11211,
+      "status": "closed",
+      "latency_ms": 0.035988
+    }
+  ,
+    {
+      "host": "127.0.0.1",
+      "protocol": "tcp",
+      "port": 27017,
+      "status": "closed",
+      "latency_ms": 0.029446
+    }
+  ,
+    {
+      "host": "127.0.0.1",
+      "protocol": "tcp",
+      "port": 9000,
+      "status": "closed",
+      "latency_ms": 0.156317
+    }
+  ,
+    {
+      "host": "127.0.0.1",
+      "protocol": "tcp",
+      "port": 9200,
+      "status": "closed",
+      "latency_ms": 0.148356
+    }
+  ]
+,
+  "stats": {
+    "total": 54,
+    "open_count": 1,
+    "closed": 53,
+    "errors": 0,
+    "elapsed_s": 0.012186
+  }}

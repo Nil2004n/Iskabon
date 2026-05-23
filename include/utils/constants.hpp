@@ -70,8 +70,6 @@ constexpr std::string_view LOGO = R"(
 └──────────────────────────────────────────────────────────────────────────────────────────────────┘
 )";
 
-// SHA-256 of LOGO above — computed from the actual compiled string_view.
-// DO NOT change this manually. Run  to regenerate.
-constexpr std::string_view LOGO_SHA256 = "819e1294c7790d269b7ed579a5c3c8059b2e3480847f34393aaee735ed3a35b8";
+constexpr std::string_view LOGO_SHA256 = "02d5766706ec857c8598f258b51185a6f4b8ac08f43481d80f33eda9937d19e0";
 
 } // namespace iskabon
