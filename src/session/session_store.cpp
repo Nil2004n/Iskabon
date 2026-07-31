@@ -21,6 +21,15 @@ SessionStore::SessionStore(const std::string& name)
     session_dir_  = SESSIONS_ROOT / name;
     session_path_ = session_dir_ / (name + ".json");
     fs::create_directories(session_dir_);
+
+    // Remove stale .tmp files left behind by interrupted atomic_write() calls.
+    // If the process dies between opening the tmp file and fs::rename(), the
+    // orphaned <name>.json.tmp stays behind; without this sweep it accumulates
+    // in the session directory across many interrupted scans.
+    for (const auto& entry : fs::directory_iterator(session_dir_)) {
+        if (entry.is_regular_file() && entry.path().extension() == ".tmp")
+            fs::remove(entry.path());
+    }
 }
 
 void SessionStore::init(const std::string& router, const std::string& target) {
@@ -86,8 +95,8 @@ void SessionStore::finalize(const probes::ScanStats& st) {
       << "    " << jkv("closed",     std::to_string(st.closed),     false) << ",\n"
       << "    " << jkv("errors",     std::to_string(st.errors),     false) << ",\n"
       << "    " << jkv("elapsed_s",  std::to_string(st.elapsed_s),  false) << "\n"
-      << "  }";
-    raw.insert(pos, s.str());
+      << "  }\n}"; // added newline and root causing the bracket not by Ai hahahahha
+    raw.replace(pos, 1, s.str()); // insert er jaygay replace better properly format kore
     atomic_write(raw);
 }
 

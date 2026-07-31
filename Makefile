@@ -38,9 +38,25 @@ $(BUILD)/%.o: src/%.cpp
 	$(CXX) $(STD) $(OPT) $(WARN) $(DEFINES) $(INCLUDE) -c $< -o $@
 
 # ── Debug / ASAN ───────────────────────────────────────────
+# Debug objects live in build/debug/ so they never clobber the
+# release objects in build/ (the release build would otherwise
+# silently link against -O2/-flto object files).
+DBG_BUILD := $(BUILD)/debug
+OBJS_DBG  := $(patsubst src/%.cpp, $(DBG_BUILD)/%.o, $(SRCS))
+
+# make debug — compile everything with -O0 -g3 + ASan/UBSan and
+# -DISKABON_DEBUG, then link into iskabon_debug. The link lives on
+# the real file target so an up-to-date build is a no-op.
 debug: DEFINES += -DISKABON_DEBUG
-debug: $(OBJS_DBG)
-	$(MAKE) OPT="$(DBGFLAGS)" TARGET="$(TARGET)_debug"
+debug: $(TARGET)_debug
+
+$(TARGET)_debug: $(OBJS_DBG)
+	$(CXX) $(STD) $(DBGFLAGS) $(WARN) $(DEFINES) -o $@ $^ $(LIBS)
+	@echo "[+] Built: ./$@"
+
+$(DBG_BUILD)/%.o: src/%.cpp
+	@mkdir -p $(dir $@)
+	$(CXX) $(STD) $(DBGFLAGS) $(WARN) $(DEFINES) $(INCLUDE) -c $< -o $@
 
 # ── Install (system-wide) ──────────────────────────────────
 install: all

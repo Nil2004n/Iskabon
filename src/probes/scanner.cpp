@@ -66,7 +66,7 @@ ScanStats Scanner::run(
                                            "unsupported", std::nullopt, "protocol not implemented" };
             }
 
-            if (r.status.find("open") != std::string::npos || r.status.find("up") != std::string::npos)
+            if (r.status == "open" || r.status == "up" || r.status == "up(tcp-fallback)")
                 open_a++;
             else if (r.status == "closed" || r.status == "down" || r.status == "unknown")
                 closed_a++;

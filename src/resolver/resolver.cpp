@@ -39,7 +39,15 @@ static std::vector<std::string> expand_cidr(const std::string& cidr) {
 
     std::vector<std::string> hosts;
     char buf[INET_ADDRSTRLEN];
-    for (uint32_t h = net + 1; h < bc; ++h) {
+    // Iterate with a count, not h <= bc, to avoid overflow wrapping
+    // (h == UINT32_MAX, then ++h wraps to 0 → infinite loop for /0).
+    uint64_t count = (uint64_t)bc - (uint64_t)net + 1;
+    for (uint64_t i = 0; i < count; ++i) {
+        uint32_t h = net + (uint32_t)i;
+        // Skip network and broadcast addresses, except for /31 and /32
+        // where they are the only (usable) hosts.
+        if (prefix < 31 && (h == net || h == bc))
+            continue;
         in_addr tmp; tmp.s_addr = htonl(h);
         inet_ntop(AF_INET, &tmp, buf, sizeof(buf));
         hosts.emplace_back(buf);
