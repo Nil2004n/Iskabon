@@ -86,8 +86,8 @@ void SessionStore::finalize(const probes::ScanStats& st) {
       << "    " << jkv("closed",     std::to_string(st.closed),     false) << ",\n"
       << "    " << jkv("errors",     std::to_string(st.errors),     false) << ",\n"
       << "    " << jkv("elapsed_s",  std::to_string(st.elapsed_s),  false) << "\n"
-      << "  }";
-    raw.insert(pos, s.str());
+      << "  }\n}"; // added newline and root causing the bracket not by Ai hahahahha
+    raw.replace(pos, 1, s.str()); // insert er jaygay replace better properly format kore
     atomic_write(raw);
 }
 
