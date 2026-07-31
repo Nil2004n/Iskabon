@@ -19,7 +19,7 @@ const int PORT_SCAN_WINDOW = 60;         // in seconds
 map<string, set<int>> scanned_ports;           // src_ip -> set of ports
 map<string, vector<time_t>> scan_timestamps;   // src_ip -> timestamps
 
-string get_current_time() {
+string get_current_time_port() {
     auto now = chrono::system_clock::now();
     time_t now_time = chrono::system_clock::to_time_t(now);
     stringstream ss;
@@ -48,28 +48,9 @@ int detect_port_scan(string src_ip, int dst_port, time_t timestamp) {
     if (unique_ports >= PORT_SCAN_THRESHOLD) {
         cout << "   ALERT [HIGH] Port scan detected from " << src_ip << endl;
         cout << "   Unique ports scanned: " << unique_ports << " in last " << PORT_SCAN_WINDOW << " seconds" << endl;
-        cout << "   Time: " << get_current_time() << endl;
+        cout << "   Time: " << get_current_time_port() << endl;
         cout << "   ---" << endl;
         return 1;
     }
-    return 0;
-}
-
-int main() {
-    cout << "=== Iskabon SIEM — Port Scan Detection ===" << endl;
-    cout << "Threshold: " << PORT_SCAN_THRESHOLD << " unique ports in " << PORT_SCAN_WINDOW << " seconds" << endl;
-    cout << "============================================" << endl << endl;
-    
-    time_t now = time(nullptr);
-    string attacker = "192.168.1.100";
-    
-    // Simulate port scan
-    vector<int> ports = {22, 23, 25, 53, 80, 443, 8080, 3306, 5432, 6379, 27017, 9200};
-    
-    for (int i = 0; i < ports.size(); i++) {
-        cout << "[LOG] Connection attempt to port " << ports[i] << " from " << attacker << endl;
-        detect_port_scan(attacker, ports[i], now + i * 3);
-    }
-    
     return 0;
 }

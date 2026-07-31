@@ -78,25 +78,4 @@ int detect_web_attack(string src_ip, string uri, string method) {
     return 0;
 }
 
-int main() {
-    cout << "=== Iskabon SIEM — Web Attack Detection ===" << endl;
-    cout << "Threshold: " << WEB_ATTACK_THRESHOLD << " attempts from same IP" << endl;
-    cout << "============================================" << endl << endl;
-    
-    string attacker = "192.168.1.200";
-    
-    // Simulate web attacks
-    vector<string> attacks = {
-        "/login?username=admin' OR '1'='1",
-        "/search?q=<script>alert(1)</script>",
-        "/download?file=../../../etc/passwd",
-        "/admin?cmd=whoami;"
-    };
-    
-    for (string attack : attacks) {
-        cout << "[LOG] " << attacker << " -> " << attack << endl;
-        detect_web_attack(attacker, attack, "GET");
-    }
-    
-    return 0;
-}
+
