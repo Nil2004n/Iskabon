@@ -7,6 +7,8 @@
 #include <unistd.h>
 #include <cerrno>
 #include <cstring>
+#include <netinet/ip_icmp.h>
+#include <netinet/udp.h>
 
 namespace iskabon::probes {
 
@@ -49,7 +51,20 @@ ProbeResult UdpProbe::run(const std::string& host, int port) {
     int rc = select(fd + 1, &rset, nullptr, nullptr, &tv);
     if (rc > 0) {
         ssize_t n = recv(fd, buf, sizeof(buf), 0);
-        status = (n >= 0) ? "open|responsive" : "open|filtered";
+        if (n >= 0) {
+            // --- FIX #10: Check for ICMP port-unreachable ---
+            struct iphdr* ip = (struct iphdr*)buf;
+            if (ip->protocol == IPPROTO_ICMP) {
+                struct icmphdr* icmp = (struct icmphdr*)(buf + ip->ihl * 4);
+                if (icmp->type == ICMP_DEST_UNREACH && icmp->code == ICMP_PORT_UNREACH) {
+                    status = "closed";
+                } else {
+                    status = "open|responsive";
+                }
+            } else {
+                status = "open|responsive";
+            }
+        }
     }
     close(fd);
     return { host, Protocol::UDP, port, status,
