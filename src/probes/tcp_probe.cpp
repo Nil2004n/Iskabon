@@ -36,23 +36,38 @@ ProbeResult TcpProbe::run(const std::string& host, int port) {
 
     // Non-blocking connect
     fcntl(fd, F_SETFL, O_NONBLOCK);
-    connect(fd, res->ai_addr, res->ai_addrlen);
+    int conn = connect(fd, res->ai_addr, res->ai_addrlen);
     freeaddrinfo(res);
 
-    fd_set wset;
-    FD_ZERO(&wset); FD_SET(fd, &wset);
-    timeval tv;
-    tv.tv_sec  = static_cast<long>(timeout_sec_);
-    tv.tv_usec = static_cast<long>((timeout_sec_ - tv.tv_sec) * 1e6);
-
     std::string status = "closed";
-    int rc = select(fd + 1, nullptr, &wset, nullptr, &tv);
-    if (rc > 0) {
-        int err = 0;
-        socklen_t len = sizeof(err);
-        getsockopt(fd, SOL_SOCKET, SO_ERROR, &err, &len);
-        status = (err == 0) ? "open" : "closed";
+
+    // --- FIX #9: Check for immediate errors ---
+    if (conn < 0) {
+        if (errno == EINPROGRESS) {
+            // Connection is in progress — wait for timeout
+            fd_set wset;
+            FD_ZERO(&wset); FD_SET(fd, &wset);
+            timeval tv;
+            tv.tv_sec  = static_cast<long>(timeout_sec_);
+            tv.tv_usec = static_cast<long>((timeout_sec_ - tv.tv_sec) * 1e6);
+
+            int rc = select(fd + 1, nullptr, &wset, nullptr, &tv);
+            if (rc > 0) {
+                int err = 0;
+                socklen_t len = sizeof(err);
+                getsockopt(fd, SOL_SOCKET, SO_ERROR, &err, &len);
+                status = (err == 0) ? "open" : "closed";
+            }
+            // else: timeout → closed
+        } else {
+            // --- FIX #9: Immediate error (ECONNREFUSED, etc.) — no wait ---
+            status = "closed";
+        }
+    } else {
+        // connect succeeded immediately
+        status = "open";
     }
+
     close(fd);
     return { host, Protocol::TCP, port, status,
              utils::monotonic_ms() - start, std::nullopt };
