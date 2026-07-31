@@ -6,15 +6,19 @@
 #include <regex>
 #include <iomanip>
 #include <chrono>
+#include <sstream>
+#include <ctime>
 
 using namespace std;
 
 // Configuration
-const int WEB_ATTACK_THRESHOLD = 3;  // 3+ attempts from same IP
+const int WEB_ATTACK_THRESHOLD = 3;     // 3+ attempts from same IP
+const int WEB_ATTACK_RESET_TIME = 60;   // Reset after 60 seconds
 
 // Store attack attempts
-map<string, int> attack_counts;      // src_ip -> count
-map<string, vector<string>> attack_logs; // src_ip -> attack types
+map<string, int> attack_counts;                 // src_ip -> count
+map<string, vector<string>> attack_logs;        // src_ip -> attack types
+map<string, time_t> last_alert_time;            // src_ip -> last alert timestamp
 
 string get_current_time() {
     auto now = chrono::system_clock::now();
@@ -46,10 +50,20 @@ int detect_web_attack(string src_ip, string uri, string method) {
     }
     
     if (attack_detected) {
+        // --- RESET LOGIC: Clear counts if 60 seconds have passed ---
+        time_t now = time(nullptr);
+        if (last_alert_time.find(src_ip) != last_alert_time.end() &&
+            now - last_alert_time[src_ip] > WEB_ATTACK_RESET_TIME) {
+            attack_counts[src_ip] = 0;
+            attack_logs[src_ip].clear();
+        }
+        
         attack_counts[src_ip]++;
         attack_logs[src_ip].push_back(attack_type);
         
         if (attack_counts[src_ip] >= WEB_ATTACK_THRESHOLD) {
+            last_alert_time[src_ip] = now;
+            
             cout << "   ALERT [HIGH] Web attack detected from " << src_ip << endl;
             cout << "   Attack type: " << attack_type << endl;
             cout << "   URI: " << uri << endl;
